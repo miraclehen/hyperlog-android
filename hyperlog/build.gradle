@@ -1,7 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
+apply plugin: 'com.github.dcendents.android-maven'
 
 ext {
+    group = 'com.miracle.logger'
+
     bintrayRepo = 'maven'
     bintrayName = 'hyperlog'
 
@@ -13,8 +16,6 @@ ext {
 
     siteUrl = 'https://github.com/hypertrack/hyperlog-android'
     gitUrl = 'https://github.com/hypertrack/hyperlog-android.git'
-
-    libraryVersion = computeVersionName()
 
     developerId = 'piyushgupta27'
     developerName = 'Piyush Gupta'
@@ -60,38 +61,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-def computeVersionName() {
-    def versionPropsFile = file('gradle.properties')
 
-    if (versionPropsFile.canRead()) {
-        def Properties versionProps = new Properties()
 
-        versionProps.load(new FileInputStream(versionPropsFile))
-
-        def value = 0
-
-        def runTasks = gradle.startParameter.taskNames
-        if ('internalRelease' in runTasks || 'iR' in runTasks) {
-            value = 1;
-        }
-
-        def versionMajor = 0
-        def versionMinor = 0
-        def versionPatch = versionProps['VERSION_PATCH'].toInteger() + value
-        def versionBuild = versionProps['VERSION_BUILD'].toInteger() + 1
-
-        versionProps['VERSION_PATCH'] = versionPatch.toString()
-        versionProps['VERSION_BUILD'] = versionBuild.toString()
-        versionProps['version'] = versionMajor + "." + versionMinor + "." + versionPatch
-        versionProps.store(versionPropsFile.newWriter(), null)
-
-        return versionMajor + "." + versionMinor + "." + versionPatch
-    } else {
-        throw new GradleException("Could not read version.properties!")
-    }
-}
-
-if (project.rootProject.file('local.properties').exists()) {
-    apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-    apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
-}
