@@ -1,30 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'com.github.dcendents.android-maven'
-
-ext {
-    group = 'com.miracle.logger'
-
-    bintrayRepo = 'maven'
-    bintrayName = 'hyperlog'
-
-    publishedGroupId = 'com.hypertrack'
-    libraryName = 'hyperlog'
-    artifact = 'hyperlog'
-
-    libraryDescription = 'A utility logger library for Android on top of standard Android Log class for debugging purpose. This is a simple library that will allow Android apps or library to store log into database so that developer can pull the logs from the database into File or push the logs to your remote server for debugging purpose.'
-
-    siteUrl = 'https://github.com/hypertrack/hyperlog-android'
-    gitUrl = 'https://github.com/hypertrack/hyperlog-android.git'
-
-    developerId = 'piyushgupta27'
-    developerName = 'Piyush Gupta'
-    developerEmail = 'piyush@hypertrack.io'
-
-    licenseName = 'The MIT License (MIT)'
-    licenseUrl = 'http://opensource.org/licenses/MIT'
-    allLicenses = ["MIT"]
-}
+group = 'com.miracle.logger'
 
 android {
     compileSdkVersion 27
